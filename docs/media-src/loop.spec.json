@@ -1,0 +1,35 @@
+{
+  "title": "page_audit.py",
+  "setup": [
+    "cp \"$REPO_ROOT\"/agensi/growth-stack/shared/scripts/page_audit.py .",
+    "cp -r \"$REPO_ROOT\"/agensi/growth-stack/examples/fixture-site site",
+    "\"$REPO_ROOT\"/docs/media-src/serve.sh start site/before"
+  ],
+  "teardown": ["\"$REPO_ROOT\"/docs/media-src/serve.sh stop"],
+  "width": 940,
+  "rows": 33,
+  "fontSize": 14,
+  "wrap": 104,
+  "typingSeconds": 1.0,
+  "endHoldSeconds": 3,
+  "poster": true,
+  "highlight": [
+    {"re": "^GROWTH SCORE: 23", "cls": "red"},
+    {"re": "^GROWTH SCORE: 56", "cls": "yellow"},
+    {"re": "^GROWTH SCORE: 72", "cls": "green"}
+  ],
+  "steps": [
+    {"note": "# a made-up bike shop page, served on localhost. Score it."},
+    {"cmd": "python3 page_audit.py http://127.0.0.1:8765/ --allow-private | grep -A5 '^GROWTH'", "expectExit": [0, 1], "hold": 1.0},
+    {"note": ""},
+    {"note": "# loop 1 fixes the top three gaps. Two of the edits, before then after:"},
+    {"cmd": "grep -h -E '<title>|<button>' site/before/index.html site/loop-1/index.html", "hold": 1.2},
+    {"run": "\"$REPO_ROOT\"/docs/media-src/serve.sh start site/loop-1"},
+    {"cmd": "python3 page_audit.py http://127.0.0.1:8765/ --allow-private | grep -A5 '^GROWTH'", "expectExit": [0, 1], "hold": 1.0},
+    {"note": ""},
+    {"note": "# loop 2: the next three (mobile basics, question headings, contact and policy links)"},
+    {"run": "\"$REPO_ROOT\"/docs/media-src/serve.sh start site/loop-2"},
+    {"cmd": "python3 page_audit.py http://127.0.0.1:8765/ --allow-private | grep -A5 '^GROWTH'", "expectExit": [0, 1], "hold": 1.0},
+    {"note": "# 23 to 72. Every point that moved has a name."}
+  ]
+}

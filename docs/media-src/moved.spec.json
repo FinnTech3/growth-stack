@@ -1,0 +1,24 @@
+{
+  "title": "compare.py",
+  "setup": [
+    "cp \"$REPO_ROOT\"/agensi/growth-stack/shared/scripts/page_audit.py .",
+    "cp -r \"$REPO_ROOT\"/agensi/growth-stack/examples/fixture-site site",
+    "awk '/^```python$/{f=1;next} /^```$/{f=0} f' \"$REPO_ROOT\"/agensi/growth-stack/skills/growth-loop/references/ledger.md > compare.py",
+    "for d in before loop-1 loop-2; do \"$REPO_ROOT\"/docs/media-src/serve.sh start site/$d; python3 page_audit.py http://127.0.0.1:8765/ --allow-private --json > $d.json || true; done"
+  ],
+  "teardown": ["\"$REPO_ROOT\"/docs/media-src/serve.sh stop"],
+  "width": 940,
+  "rows": 21,
+  "fontSize": 14,
+  "wrap": 104,
+  "highlight": [
+    {"re": "^score 23 -> 72", "cls": "green"},
+    {"re": "^\\+ ", "cls": "green"},
+    {"re": "^- ", "cls": "red"}
+  ],
+  "steps": [
+    {"note": "# every part of the score that moved between the first audit and the second loop"},
+    {"cmd": "python3 compare.py before.json loop-2.json"},
+    {"note": "# a line starting with - would be a regression. There are none."}
+  ]
+}
