@@ -92,7 +92,7 @@ def get(url, allow_private=False, timeout=TIMEOUT, max_bytes=MAX_BYTES):
 
 
 SEARCH = ("Googlebot", "Bingbot", "DuckDuckBot", "Applebot")
-AI_DATA = ("Google-Extended", "Applebot-Extended", "CCBot", "Bytespider", "Amazonbot", "Meta-ExternalAgent", "Diffbot")
+AI_DATA = ()  # no AI crawler names are built in; the owner names them with --agent
 SEV = ["critical", "high", "medium", "low"]
 
 
@@ -328,7 +328,7 @@ def render(res):
   lines += [f"    {r['status'] if 'status' in r else 'ERR'} {r['hops'] if 'hops' in r else '-'} redirect(s)  {r['url']}" for r in res["sample"]]
   lines += ["", "FINDINGS (worst first)"] + [f"  [{f['severity'].upper()}] {f['area']}: {f['evidence']}\n      Fix: {f['fix']}" for f in res["findings"]]
   lines += ["  None."] * (not res["findings"])
-  return "\n".join(lines + ["", "Blocking an AI crawler is a choice, not a fault. The list is short on purpose: add other tokens with --agent."])
+  return "\n".join(lines + ["", "Blocking an AI crawler is a choice, not a fault. Name any other crawler tokens with --agent."])
 
 
 def main(argv=None):

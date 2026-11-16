@@ -43,7 +43,7 @@ means bad input, such as a private address (`--allow-private` is for the user's 
 3. For every finding write: what it is, the likely cause, the fix, and the command that proves the fix (re-run the probe).
    [The symptom table](references/symptoms.md) lists the usual causes.
 4. For crawler rules, list every crawler as allowed or blocked and ask the owner to confirm each AI or data crawler.
-   `blocked_everywhere` shows any named agent the file blocks from the whole site, including ones the built-in list lacks.
+   `blocked_everywhere` shows any named agent the file blocks from the whole site, including ones you did not name.
 5. Check the sitemap against the sample: every listed URL should return 200, be indexable and be its own canonical.
 6. Hand page-level gaps (titles, copy, schema) to `growth-loop`. This skill stops at crawl and index health.
 

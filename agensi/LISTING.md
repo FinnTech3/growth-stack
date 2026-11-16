@@ -41,7 +41,7 @@ points is not a fix. The scripts refuse private addresses, cap size, time and re
 
 **Where it stops.** It reads the HTML a crawler gets first, so JavaScript-only content is not seen. It promises no rankings,
 traffic, citations or revenue. It will not invent a testimonial, a statistic or a price; missing proof is a marked gap.
-The AI crawler list is short on purpose and takes more tokens with `--agent`.
+It tests the main search crawlers by default; you name any AI crawler tokens to test with `--agent`.
 
 ## See it in action
 
@@ -108,7 +108,7 @@ After loop 2 the score is 72/100, and the probe reports no findings. Still lost:
 - Heuristic checks (answer length, proof, thin content, CTA wording) are rules of thumb and are labelled as such.
 - It does not run Core Web Vitals, backlinks, rankings or analytics. Bring exports and it works from them.
 - The skills need your facts. Without a real quote, price or address, they leave a marked gap.
-- The AI crawler list is short by design. Add other tokens with `--agent`.
+- No AI crawler names are built in. Name the ones you want tested with `--agent`.
 
 ## FAQ
 
