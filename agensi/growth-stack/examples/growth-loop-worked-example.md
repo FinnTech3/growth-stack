@@ -275,13 +275,6 @@ robots.txt: HTTP 200
     search  Bingbot               allowed  no matching rule
     search  DuckDuckBot           allowed  no matching rule
     search  Applebot              allowed  no matching rule
-    ai/data Google-Extended       allowed  no matching rule
-    ai/data Applebot-Extended     allowed  no matching rule
-    ai/data CCBot                 allowed  no matching rule
-    ai/data Bytespider            allowed  no matching rule
-    ai/data Amazonbot             allowed  no matching rule
-    ai/data Meta-ExternalAgent    allowed  no matching rule
-    ai/data Diffbot               allowed  no matching rule
 
 Sitemap URLs found: 3
 Sampled 3 URL(s)
@@ -295,7 +288,7 @@ FINDINGS (worst first)
   [LOW] robots.txt: no Sitemap line
       Fix: Add 'Sitemap: <absolute URL>' to robots.txt.
 
-Blocking an AI crawler is a choice, not a fault. The list is short on purpose: add other tokens with --agent.
+Blocking an AI crawler is a choice, not a fault. Name any other crawler tokens with --agent.
 ```
 
 The loop-2 changes to the page:
@@ -377,7 +370,7 @@ Sampled 3 URL(s)
 FINDINGS (worst first)
   None.
 
-Blocking an AI crawler is a choice, not a fault. The list is short on purpose: add other tokens with --agent.
+Blocking an AI crawler is a choice, not a fault. Name any other crawler tokens with --agent.
 ```
 
 | | Before | After loop 1 | After loop 2 |

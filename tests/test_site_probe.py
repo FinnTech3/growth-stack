@@ -150,12 +150,12 @@ def test_star_group_blocking_everything_is_critical(sp, site, capsys):
 def test_ai_crawlers_are_reported_but_blocking_one_is_not_a_finding(sp, site, capsys):
     site.routes["/"] = {"body": OK_PAGE}
     site.routes["/robots.txt"] = {
-        "body": "User-agent: CCBot\nDisallow: /\n\nUser-agent: ExampleAIBot\nDisallow: /\n",
+        "body": "User-agent: ExampleAIBot\nDisallow: /\n",
         "headers": {"Content-Type": "text/plain"},
     }
     _, res, _ = probe_json(sp, capsys, site, "--agent", "ExampleAIBot", "--agent", "OtherBot")
     by = {r["agent"]: r for r in res["rules"]}
-    assert by["CCBot"]["allowed"] is False and by["CCBot"]["kind"] == "ai/data"
+    assert by["ExampleAIBot"]["kind"] == "ai/data"
     assert by["ExampleAIBot"]["allowed"] is False and by["OtherBot"]["allowed"] is True
     assert by["Googlebot"]["allowed"] is True
     assert not [f for f in res["findings"] if f["severity"] in ("critical", "high")]
@@ -382,7 +382,7 @@ def test_unreachable_origin_is_exit_1(sp, capsys):
 
 def test_text_report_has_the_sections_and_the_ai_note(sp, site, capsys):
     site.routes["/"] = {"body": OK_PAGE}
-    code, out, _ = run(sp, capsys, site.url(), "--allow-private", "--delay", "0")
+    code, out, _ = run(sp, capsys, site.url(), "--allow-private", "--delay", "0", "--agent", "ExampleAIBot")
     assert (
         code == 0
         and "CRAWL RULES" in out

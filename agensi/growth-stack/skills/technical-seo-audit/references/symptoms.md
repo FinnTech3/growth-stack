@@ -17,6 +17,6 @@
 
 ## Crawlers
 
-The built-in list covers four search crawlers and a short list of data crawlers. Any other token goes in with
-`--agent`. A named group that blocks the whole site shows in `blocked_everywhere` even when the script has never
+The built-in list covers four search crawlers. Any other crawler token, such as an AI or data crawler the owner
+wants checked, goes in with `--agent`. A named group that blocks the whole site shows in `blocked_everywhere` even when the script has never
 heard of it. Whether that is right is the owner's call.

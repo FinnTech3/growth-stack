@@ -74,7 +74,7 @@ Every skill has the same shape: inputs, steps, an output, exit criteria the agen
 - Invent a testimonial, a statistic, a client name or a price. If proof is missing it leaves a marked gap.
 - Run JavaScript. The scripts read the HTML a crawler gets first, and the reports say so.
 - Replace a crawler, analytics or a keyword tool. Bring an export and it works from that.
-- Pick the AI crawler policy for you. `site_probe.py` lists a short set by design, shows every named agent a robots file blocks, and takes more with `--agent`.
+- Pick the AI crawler policy for you. `site_probe.py` tests the main search crawlers, shows every named agent a robots file blocks, and tests any other crawler tokens you name with `--agent`.
 
 ## Finn's take
 

@@ -130,7 +130,7 @@ The fifteen skills, with when to use each, are in [the pack README](agensi/growt
 - Run JavaScript. It reads the HTML a crawler gets first, so JavaScript-only content is not seen.
 - Recover everything. At 72 the fixture still loses 28 points: 6 are hosting (https, caching, security headers), 3 are review
   proof it will not invent, and the worked example lists the other 19 with the reason for each.
-- Pick your AI crawler policy. The list in `site_probe.py` is short on purpose; add more with `--agent`.
+- Pick your AI crawler policy. `site_probe.py` has no AI crawler names built in; name the ones you care about with `--agent`.
 - Be exact on heuristics. Answer length, proof, thin content and CTA wording are rules of thumb, and the reports label them.
 
 ## Develop / verify
